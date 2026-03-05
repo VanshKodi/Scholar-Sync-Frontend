@@ -21,18 +21,28 @@ export const getProfile = async () => {
     return null;
   }
 
-  // 2. Use the ID from the session to fetch the profile
+  // 2. Fetch the profile and its university membership (if any)
   const { data, error } = await supabase
     .from('profiles')
-    .select('*')
-    .eq('profile_id', session.user.id) // Using profile_id from your schema
+    .select(`
+      *,
+      university_members (
+        role,
+        joined_at,
+        university (
+          university_id,
+          university_name,
+          university_domain
+        )
+      )
+    `)
+    .eq('profile_id', session.user.id)
     .maybeSingle();
 
   if (error) {
     console.error("Error fetching profile:", error.message);
     return null;
   }
-  console.log("Profile data:", data);
 
   return data;
 };
