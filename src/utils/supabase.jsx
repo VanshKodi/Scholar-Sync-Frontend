@@ -12,7 +12,6 @@ export const checkUserSession = async () => {
   
   return data.session
 }
-
 export const getProfile = async () => {
   // 1. Get the current session
   const { data: { session }, error: sessionError } = await supabase.auth.getSession();
@@ -27,7 +26,7 @@ export const getProfile = async () => {
     .from('profiles')
     .select('*')
     .eq('profile_id', session.user.id) // Using profile_id from your schema
-    .single();
+    .maybeSingle();
 
   if (error) {
     console.error("Error fetching profile:", error.message);
