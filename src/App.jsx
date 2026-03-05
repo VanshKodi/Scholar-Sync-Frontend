@@ -1,22 +1,15 @@
-import { useEffect, useState } from 'react'
-import { checkUserSession } from './utils/supabase.jsx'
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home.jsx';
+import LoginSignup from './components/LoginSignup.jsx';
 
-export default function App() {
-  const [session, setSession] = useState(null)
-
-  useEffect(() => {
-    const fetchSession = async () => {
-      const activeSession = await checkUserSession()
-      setSession(activeSession)
-      console.log(activeSession)
-    }
-
-    fetchSession()
-  }, [])
-
+const App = () => {
   return (
-    <div>
-      Check your developer console. Logged in: {session ? 'Yes' : 'No'}
-    </div>
-  )
-}
+    <Routes>
+      <Route path="/" element={<Home />} />
+      
+      <Route path="/login" element={<LoginSignup />} />
+    </Routes>
+  );
+};
+
+export default App;
