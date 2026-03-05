@@ -102,18 +102,15 @@ const OnboardingModal = ({ isOpen, onComplete }) => {
                         <div className="fade-in">
                             <h2>Join a University</h2>
                             <p>Which campus are you joining?</p>
-                            <select 
-                                value={formData.university}
-                                onChange={(e) => setFormData({...formData, university: e.target.value})}
-                            >
-                                <option value="">Select University...</option>
-                                <option value="nirma">Nirma University</option>
-                                <option value="nirma_tech">Nirma Technology</option>
-                                <option value="nirma_support">Nirma Support</option>
-                            </select>
+                            <input
+                                type="text"
+                                placeholder="University ID"
+                                value={formData.university_id}
+                                onChange={(e) => setFormData({...formData, university_id: e.target.value})}
+                            />
                             <div className="button-group">
                                 <button className="secondary" onClick={() => setStep(1)}>Back</button>
-                                <button onClick={handleSubmit} disabled={!formData.university}>Complete</button>
+                                <button onClick={handleSubmit} disabled={!formData.university_id}>Complete</button>
                             </div>
                         </div>
                     )}

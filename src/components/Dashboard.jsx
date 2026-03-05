@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { getProfile } from "../utils/supabase";
 import OnboardingModal from "./Modal";
-
+import { request } from "../api";
 export default function Dashboard() {
   const [active, setActive] = useState("overview");
   const [profile, setProfile] = useState(null);
@@ -26,6 +26,9 @@ export default function Dashboard() {
   }, []);
 
   const handleOnboardingComplete = (newData) => {
+    const updatedProfile = { ...profile, ...newData };
+    console.log("Onboarding complete with data:", updatedProfile);
+    const response = request("/set_profiles_name", {profile_id: updatedProfile.id, name: updatedProfile.displayName}, "POST");
     // Here you would typically perform your Supabase insert
     // For now, we update local state and close the modal
     setProfile({ ...newData });
