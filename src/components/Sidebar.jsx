@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './sidebar.css'; // Assume the CSS above is in this file
+import './Sidebar.css';
 import { request } from '../api.jsx';
 
 // Reusing your SVG strings
