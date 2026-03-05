@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import './Home.css'
 
 export default function Home() {
   return (
@@ -11,13 +11,13 @@ export default function Home() {
       </header>
 
       <section className="home-actions">
-        <Link to="/login" className="home-button">
+        <Link to="/login-signup" className="home-button">
           Login
         </Link>
-        <Link to="/signup" className="home-button">
+        <Link to="/login-signup" className="home-button">
           Signup
         </Link>
       </section>
     </div>
-  );
+  )
 }
